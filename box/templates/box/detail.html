@@ -1,0 +1,105 @@
+{% extends 'box/base.html' %}
+{% block title %}{{ employee_gmails }}{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'box:detail' employee_id_taken.id  employee_gmail.id %}">
+                        {% if employee_public.photo_logo %}
+                            <img src="{{ employee_public.photo_logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ employee_gmail.firstname }}</h1>
+                    <h1>{{ employee_gmail.lastname }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'box:further' employee_id_taken.id %}">View All</a></li>
+               <!-- <li role="presentation"><a href="{#% url 'music:create_song' album.id %#}">Add New Song</a></li>-->
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>{{ employee_gmail.firstname }}'s Public Details</h3>
+
+                    {% if error_message %}
+
+
+
+
+
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>mobile_no.</th>
+                            <th>emergency_contact</th>
+                            <th>emergency_contact1</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>{{ employee_public.mobile_number }}</td>
+
+
+                                <td>
+                                    {{ employee_public.emergency_contact_number }}
+                                    </td>
+
+                                <td>
+                                    {{ employee_public.emergency_contact_number1 }}</td>
+
+
+                                </tr>
+
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th>Current Address</th>
+                            <th>Field of Interest</th>
+                            <th>Vehicle number</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>{{ employee_public.current_address }}</td>
+                                <td>{{ employee_public.field_of_intrest }}</td>
+                                <td>{{ employee_vechicle.vechicle_number }}</td>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

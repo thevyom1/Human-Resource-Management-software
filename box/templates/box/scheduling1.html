@@ -1,0 +1,60 @@
+{% extends 'box/base.html' %}
+{% block title %}Scheduling level1{% endblock %}
+
+{% block design %}
+       <<ul class="nav navbar-nav navbar-left">
+
+    <li>
+        <a href="{% url 'box:further' employee_id_taken.id %}">
+            <span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Home
+        </a>
+    </li></ul>
+
+    <ul class="nav navbar-nav navbar-right">
+
+    <li>
+        <a href="{% url 'box:logout_user' %}">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+        </a>
+    </li></ul>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Enter the interview details for level 1</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'box/form_template.html' %}
+                        {% include 'box/form_template1.html' %}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Next</button>
+              <script>
+
+
+</script>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+             </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+{% endblock %}

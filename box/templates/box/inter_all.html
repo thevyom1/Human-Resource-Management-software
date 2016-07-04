@@ -1,0 +1,103 @@
+{% extends 'box/base.html' %}
+{% block title %}interviewee Details {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+
+
+        <!-- Right Song Info -->
+        <div class="col-sm-12 col-md-12">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'box:interview_details' employee_id_taken.id %}">Back</a></li>
+
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h1>{{ interviewee.interviewee_name}}'s Details</h1>
+
+                    {% if error_message %}
+
+
+
+
+
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table" width="50%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Job Profile</th>
+                            <th>Resume</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>{{ interviewee.interviewee_name }}</td>
+                                <td>{{ interviewee.interviewee_email_id }}</td>
+                                <td>{{ interviewee.job_profile  }}</td>
+                                <td>{% if interviewee.interviewee_resume %}<a href= "{{ interviewee.interviewee_resume.url }}">resume</a>{% else %}No resume to display{% endif %}</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+                            <table class="table" width="50%">
+                                 <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Interview Date</th>
+                            <th>Interview Time</th>
+                            <th>Interviewer email</th>
+                            <th>Feedback</th>
+                        </tr>
+                        </thead>
+
+                    <tbody>
+                    <tr>
+
+
+                                          <td>{{ feedback_id_taken.level  }}</td>
+                                          <td>{{ feedback_id_taken.interview_date  }}</td>
+                                          <td>{{ feedback_id_taken.interview_time  }}</td>
+
+                                          <td>{{ feedback_id_taken.interviewer_email_id  }}</td>
+                                           {% if feedback_id_taken.feedback %}
+                                             <td>{{feedback_id_taken.feedback }} </td>
+                                           {% else %}
+                                             <td>Feedback Not Given</td>
+                                           {% endif %}
+
+
+                          </tr>
+                                </tbody>
+
+
+                                </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

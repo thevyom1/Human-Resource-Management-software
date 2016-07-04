@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Interview details{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'box/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+    <!--<script src="{#% static 'box/js/main.js' %#}"></script> -->
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+
+            {% block design %}
+
+<div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav navbar-left">
+
+    <li>
+        <a href="{% url 'box:interview_details' employee_id_taken.id  %}">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp; back
+        </a>
+    </li>
+        <li>
+        <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'box:hr_all' employee_id_taken.id %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+</li></ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a href="{% url 'box:logout_user' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+            </ul>
+            {% endblock %}
+        </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="albums-container container-fluid">
+
+    <div class="row">
+      <div align="center">
+        <div class="col-sm-12">
+            <h3></h3>
+        </div>
+              <p class="tabular">
+                  <table border="2" width="'50%">
+
+
+                      <tr>
+                          <th>Email ID</th>
+                          <th>First Name</th>
+                          <th> Status </th>
+                          <th>Rescheduling</th>
+
+                      </tr>
+          {% for interviewee_detail1 in interviewee_details %}
+                            <tr>
+                                <td><a href="{% url 'box:hr_inter_all' employee_id_taken.id  interviewee_detail1.id  %}"> {{ interviewee_detail1.interviewee_email_id }} </a> </td>
+                                <td>{{ interviewee_detail1.interviewee_name}}</td>
+
+
+
+                                <td><a href="{% url 'box:status' employee_id_taken.id  interviewee_detail1.id %}"> {{ interviewee_detail1.status}} </a> </td>
+                                <td><a href="{% url 'box:rescheduling' employee_id_taken.id  interviewee_detail1.id %}"> Reschedule </a> </td>
+
+
+
+
+                            </tr>
+
+
+ {% endfor %}
+                 </table> </p>
+
+              </div>
+
+
+      </div>
+    </div>
+    </div></body>
+
+
+
